@@ -1,0 +1,60 @@
+MIT License
+
+Copyright (c) 2026 nelim
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+
+---------------------------------------------------------------------------
+SCOPE OF THE ABOVE
+
+The MIT licence above covers only what the 1.6 port added:
+
+  - the repointed dependency and the rest of About.xml
+  - the six corrections to the patches: the single declaration of
+    VBY_TripleHayBed and the removal that makes it one, the 3-person leather
+    bed joining the leather bed removal, the conditional around the hay crib
+    block, the dead Table_LightEndTable facility reference, the move from
+    PatchOperationFindMod to MayRequireAnyOf, and ArtableBedBase as the
+    3-person bed's parent
+  - the reorganisation: Defs/triplebeds.xml, and the 3-person bed leaving the
+    shared xpaths in Patches/haybeds.xml
+  - the French translation
+  - the packaging and the documentation
+
+IT DOES NOT COVER THE ORIGINAL MOD. The nine defs, their stats, their costs,
+their recipes and their graphics are cyanobot's work, reused here:
+
+  https://steamcommunity.com/sharedfiles/filedetails/?id=3449202390
+
+The bed and blanket textures are Phaneron's, from Primitive Workbenches
+Retexture, used by cyanobot with permission - permission given to cyanobot,
+which says nothing about this port:
+
+  https://steamcommunity.com/sharedfiles/filedetails/?id=3038407835
+
+Neither of them ever declared a licence, so none is granted here and none can
+be. Their work is redistributed under the usual practice for abandoned mods -
+explicit credit, a link to the original, and removal on request.
+About/Preview.png is cyanobot's as it stands.
+
+If cyanobot or Phaneron asks for this to be taken down, it comes down.
+Immediately, and without discussion.
+
+ATTRIBUTION.md records what was taken and what was changed.

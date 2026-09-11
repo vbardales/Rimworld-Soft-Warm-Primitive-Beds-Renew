@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+<!--
+  The blanket and the bedding set for the 3-person hay bed.
+
+  In cyanobot's original these two sat inside Patches/triplebeds.xml, next to the bed itself,
+  because the whole block was wrapped in one PatchOperationFindMod. They are plain defs and
+  nothing patches them, so they live here instead - gated by the same MayRequireAnyOf as the bed
+  in Patches/triplebeds.xml, and by exactly the same list of packageIds. That is what keeps them
+  honest: the bed's CompProperties_MakeableBed names both of these, so a gate that let the bed
+  through while holding these back would be an unresolved cross-reference at startup.
+
+  The three mods are the ones that put a third pawn in a bed: Polyamory Beds (Vanilla Edition),
+  Psychology (unofficial) and Rational Romance 2. Primitive Workbenches ships 3-person beds and
+  deletes them again unless Psychology or Rational Romance 2 is loaded; this mod adds Polyamory
+  Beds to that list, which is what the original set out to do.
+-->
+
+  <ThingDef ParentName="BeddingBase" MayRequireAnyOf="Meltup.PolyamoryBeds.Vanilla,community.psychology.unofficialupdate,Mlie.RationalRomance2">
+    <defName>CYB_MultiTribalBedding</defName>
+    <label>simple multi bedding set</label>
+    <description>Layered blankets to cover a hay bed, making it warmer and more comfortable.</description>
+    <graphicData>
+      <texPath>Things/Beddings/FurBeddingDouble</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <drawSize>1.2</drawSize>
+    </graphicData>
+    <costStuffCount>190</costStuffCount>
+    <stuffCategories>
+      <li>Fabric</li>
+      <li>Leathery</li>
+    </stuffCategories>
+    <tradeability>Sellable</tradeability>
+    <statBases>
+      <MaxHitPoints>100</MaxHitPoints>
+      <WorkToMake>1100</WorkToMake>
+      <Mass>25</Mass>
+    </statBases>
+    <thingCategories>
+      <li>Beddings</li>
+    </thingCategories>
+    <recipeMaker>
+      <recipeUsers>
+        <li>ElectricTailoringBench</li>
+        <li>HandTailoringBench</li>
+        <li>CraftingSpot</li>
+      </recipeUsers>
+    </recipeMaker>
+  </ThingDef>
+
+  <ThingDef ParentName="BlanketBase" MayRequireAnyOf="Meltup.PolyamoryBeds.Vanilla,community.psychology.unofficialupdate,Mlie.RationalRomance2">
+    <defName>CYB_BedHay3Blanket</defName>
+    <label>hay bed blanket</label>
+    <description>Keeps you and your friends warm</description>
+    <graphicData>
+      <texPath>Things/Building/Furniture/Bed/CYB_BedHay3Blanket</texPath>
+      <graphicClass>Graphic_Multi</graphicClass>
+      <drawSize>(3.5,2.3)</drawSize>
+      <drawOffsetEast>(0,0,0)</drawOffsetEast>
+      <drawOffsetSouth>(0,0,0)</drawOffsetSouth>
+      <drawOffsetNorth>(0,0,0)</drawOffsetNorth>
+      <damageData>
+        <rect>(0,0.05,1,1.95)</rect>
+      </damageData>
+    </graphicData>
+    <size>(3,2)</size>
+  </ThingDef>
+
+</Defs>

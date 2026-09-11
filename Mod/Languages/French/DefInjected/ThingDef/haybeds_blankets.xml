@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<LanguageData>
+
+  <!--
+    The blankets are drawn over a bed and are never selectable, so these strings only ever show
+    up in a debug inspector. They are translated anyway: the game asks for them, and a missing
+    key is a missing key.
+  -->
+
+  <!-- EN: hay bed blanket -->
+  <CYB_HayBedBlanket.label>couverture de lit de paille</CYB_HayBedBlanket.label>
+  <!-- EN: Keeps you warm -->
+  <CYB_HayBedBlanket.description>Vous tient chaud.</CYB_HayBedBlanket.description>
+
+  <!-- EN: hay bed blanket -->
+  <CYB_DoubleHayBedBlanket.label>couverture de lit de paille double</CYB_DoubleHayBedBlanket.label>
+  <!-- EN: Keeps you warm -->
+  <CYB_DoubleHayBedBlanket.description>Vous tient chaud.</CYB_DoubleHayBedBlanket.description>
+
+  <!-- EN: hay crib blanket -->
+  <CYB_HayCribBlanket.label>couverture de berceau de paille</CYB_HayCribBlanket.label>
+  <!-- EN: Keeps your baby warm -->
+  <CYB_HayCribBlanket.description>Tient votre bébé au chaud.</CYB_HayCribBlanket.description>
+
+</LanguageData>

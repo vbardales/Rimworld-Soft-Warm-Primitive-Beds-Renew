@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<LanguageData>
+
+  <!--
+    "Bedding" in Soft Warm Beds is the whole set - mattress, pillows, linen and blanket - that a
+    pawn hauls onto a bed frame, not just the covers. "Literie" is the word for that in French,
+    and it is what the game itself uses for the vanilla bedding sets.
+  -->
+
+  <!-- EN: simple bedding -->
+  <CYB_SingleTribalBedding.label>literie simple</CYB_SingleTribalBedding.label>
+  <!-- EN: Layered blankets to cover a hay bed, making it warmer and more comfortable. -->
+  <CYB_SingleTribalBedding.description>Des couvertures superposées pour garnir un lit de paille, qui le rendent plus chaud et plus confortable.</CYB_SingleTribalBedding.description>
+
+  <!-- EN: large simple bedding -->
+  <CYB_DoubleTribalBedding.label>grande literie simple</CYB_DoubleTribalBedding.label>
+  <!-- EN: Layered blankets to cover a double hay bed, making it warmer and more comfortable. -->
+  <CYB_DoubleTribalBedding.description>Des couvertures superposées pour garnir un lit de paille double, qui le rendent plus chaud et plus confortable.</CYB_DoubleTribalBedding.description>
+
+  <!-- EN: simple crib bedding set -->
+  <CYB_CribTribalBedding.label>literie simple de berceau</CYB_CribTribalBedding.label>
+  <!-- EN: Tiny layered blankets to fill a hay crib. Provides comfort and insulation for the baby. -->
+  <CYB_CribTribalBedding.description>De minuscules couvertures superposées pour garnir un berceau de paille. Elles tiennent le bébé au chaud et au confortable.</CYB_CribTribalBedding.description>
+
+</LanguageData>

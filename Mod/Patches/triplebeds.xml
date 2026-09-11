@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Patch>
+
+<!--
+  The 3-person hay bed for polyamorous colonies.
+
+  cyanobot wrote this block wrapped in a PatchOperationFindMod on "Polyamory Beds (Vanilla
+  Edition)", with a note saying the bed had to be reinstated because Primitive Workbenches did
+  not recognise Polyamory Beds. Half of that is still true and half of it is not, and the two
+  halves pulled in opposite directions:
+
+    - Still true. Primitive Workbenches ships VBY_TripleHayBed in its own Defs and then removes
+      it again, in PolyBedCribNoMatch.xml, unless Psychology or Rational Romance 2 is loaded.
+      Polyamory Beds is not on that list and never was. So with Polyamory Beds alone the bed
+      really is gone by the time this file runs, and something has to put it back.
+
+    - No longer true. When Psychology or Rational Romance 2 IS loaded, the bed survives, and the
+      original then declared a second ThingDef under the same defName. RimWorld does not refuse
+      that: DefDatabase.Add logs one error, drops the def it already had, and keeps the newer
+      one. It worked, silently, by luck of load order.
+
+  So the answer is neither "drop it" nor "always override it". It is: remove whatever copy is
+  there, then declare exactly one - and declare it whenever any of the three mods that put a
+  third pawn in a bed is loaded, which is what "Polyamory Beds is not recognised" was reaching
+  for in the first place.
+
+  PatchOperationFindMod is gone with it. It matches a mod's DISPLAY NAME, which is the string a
+  continuation is most likely to change - "Polyamory Beds (Vanilla Edition)" is one rename away
+  from silently matching nothing, with no error to say so. MayRequireAnyOf on the def node takes
+  packageIds, which is what a mod is actually identified by.
+
+  Note that MayRequire has to sit on the ThingDef, not on the Operation. RimWorld reads that
+  attribute in LoadedModManager.ParseAndProcessXML, walking the top-level nodes of the combined
+  document after every patch has been applied, so it works on a def a patch has just added.
+  ModContentPack.LoadPatches, which builds the operations, never looks at the attribute at all:
+  MayRequire on an <Operation> element is read by nothing and the operation runs regardless.
+
+  The bed's own blanket and bedding set are in Defs/triplebeds.xml under the same three
+  packageIds.
+-->
+
+<Operation Class="PatchOperationRemove">
+	<success>Always</success>
+	<xpath>Defs/ThingDef[defName="VBY_TripleHayBed"]</xpath>
+</Operation>
+
+<Operation Class="PatchOperationAdd">
+	<xpath>Defs</xpath>
+	<value>
+
+	  <!--
+	    cyanobot's def, unchanged except for its parent. He inherited from BedWithQualityBase,
+	    which was the whole truth when this def only ever existed in place of one Primitive
+	    Workbenches had deleted. Now that it also replaces a copy that survived, ArtableBedBase
+	    is the honest parent: it is what Primitive Workbenches gives its own 3-person hay bed,
+	    and what it gives the single and the double that this mod leaves alone. Anything else
+	    would quietly take the art comp off a bed that had it.
+
+	    The stats are lower than Primitive Workbenches' own, on purpose and throughout this mod:
+	    under Soft Warm Beds the frame is not supposed to be comfortable, the bedding is.
+	  -->
+	  <ThingDef ParentName="ArtableBedBase" MayRequireAnyOf="Meltup.PolyamoryBeds.Vanilla,community.psychology.unofficialupdate,Mlie.RationalRomance2">
+		<defName>VBY_TripleHayBed</defName>
+		<label>3-person hay bed</label>
+		<description>A bed made from hay. It's soft...ish and kinda pokey. Big enough for three.</description>
+		<graphicData>
+		  <texPath>Things/Building/Furniture/Bed/HDM_BedHay3</texPath>
+		  <graphicClass>Graphic_Multi</graphicClass>
+		  <shaderType>CutoutComplex</shaderType>
+		  <drawSize>(3.5,2.5)</drawSize>
+		  <damageData>
+			<rect>(0,0.05,1,1.95)</rect>
+		  </damageData>
+		</graphicData>
+		<comps>
+		  <li Class="CompProperties_AffectedByFacilities">
+			<linkableFacilities>
+			  <li>EndTable</li>
+			  <li>Dresser</li>
+			  <li MayRequire="VanillaExpanded.VFECore">Table_RoyalDresser</li>
+			  <li MayRequire="VanillaExpanded.VFECore">Table_RoyalEndTable</li>
+			  <li MayRequire="VanillaExpanded.VFECore">Table_Wardrobe</li>
+			  <!--
+			    Table_LightEndTable was here. Vanilla Furniture Expanded dropped that def in 1.6
+			    and Primitive Workbenches (Continued) commented it out of its own facility lists
+			    for the same reason. MayRequire is not a guard against this: it checks that the
+			    mod is active, not that the def exists, so with Vanilla Furniture Expanded loaded
+			    - which is the common case - this line resolved to nothing and RimWorld logged an
+			    unresolved cross-reference on every startup.
+			  -->
+			  <li MayRequire="VanillaExpanded.VFESpacer">Table_IlluminatedEndTable</li>
+			  <li MayRequire="VanillaExpanded.VFESpacer">Table_IlluminatedDresser</li>
+			  <li MayRequire="Mlie.MoreFurniture">Anon2Dresser</li>
+			  <li MayRequire="Mlie.MoreFurniture">Anon2EndTable</li>
+			  <li MayRequire="Mlie.MoreFurniture">Anon2RoyalEndTable</li>
+			  <li MayRequire="Mlie.MoreFurniture">Anon2EndTableLight</li>
+			  <li MayRequire="Mlie.MoreFurniture">Anon2RoyalEndTableLight</li>
+			  <li MayRequire="Solaris.FurnitureBase">RGK_Dresser</li>
+			  <li MayRequire="Solaris.FurnitureBase">RGK_EndTable</li>
+			  <li MayRequire="Solaris.FurnitureBase">RGK_EndTableWithLamp</li>
+			  <li MayRequire="Solaris.FurnitureBase">RGK_EndTableWithLampE</li>
+			  <li MayRequire="Solaris.FurnitureBase">WardrobeA</li>
+			  <li MayRequire="Solaris.FurnitureBase">WardrobeB</li>
+			  <li MayRequire="Solaris.FurnitureBase">GL_Teddy</li>
+			  <li MayRequire="Mlie.UNFurniture">SadjuukFurnitureAA</li>
+			  <li MayRequire="Mlie.UNFurniture">SadjuukFurnitureBA</li>
+			  <li MayRequire="Mlie.UNFurniture">SadjuukFurnitureAB</li>
+			  <li MayRequire="Mlie.UNFurniture">SadjuukFurnitureBB</li>
+			  <li MayRequire="Mlie.UNFurniture">SadjuukFurnitureAC</li>
+			  <li MayRequire="Mlie.UNFurniture">SadjuukFurnitureBC</li>
+			  <li MayRequire="Mlie.UNColonyVanilla">SadjuukBedroomUpgradeAA</li>
+			  <li MayRequire="Mlie.UNColonyVanilla">SadjuukBedroomUpgradeAB</li>
+			  <li MayRequire="Mlie.UNColonyVanilla">SadjuukBedroomUpgradeAF</li>
+			  <li MayRequire="Mlie.UNColonyVanilla">SadjuukBedroomUpgradeAC</li>
+			  <li MayRequire="Mlie.UNColonyVanilla">SadjuukBedroomUpgradeBA</li>
+			  <li MayRequire="Mlie.UNColonyVanilla">SadjuukBedroomUpgradeBB</li>
+			  <li MayRequire="Mlie.UNColonyVanilla">SadjuukBedroomUpgradeBF</li>
+			  <li MayRequire="Mlie.UNColonyVanilla">SadjuukBedroomUpgradeBC</li>
+			  <li MayRequire="Mlie.UNColonyVanilla">SadjuukBedroomUpgradeCA</li>
+			  <li MayRequire="Mlie.UNColonyVanilla">SadjuukBedroomUpgradeCB</li>
+			  <li MayRequire="Mlie.UNColonyVanilla">SadjuukBedroomUpgradeCF</li>
+			  <li MayRequire="Mlie.UNColonyVanilla">SadjuukBedroomUpgradeCC</li>
+			  <li MayRequire="Mlie.UNColonyVanilla">SadjuukBedroomUpgradeCD</li>
+			  <li MayRequire="tosenbo.Ricecultivatingcivilization">ZP_Andon</li>
+			  <li MayRequire="tosenbo.Ricecultivatingcivilization">ZP_ElectricAndon</li>
+			  <li MayRequire="tosenbo.Ricecultivatingcivilization">ZP_ConfectionerySaucer</li>
+			  <li MayRequire="tosenbo.Ricecultivatingcivilization">ZP_MedicineBox</li>
+			</linkableFacilities>
+		  </li>
+		  <li Class="SoftWarmBeds.CompProperties_MakeableBed" MayRequire="Mlie.JPTSoftWarmBeds">
+			<blanketDef>CYB_BedHay3Blanket</blanketDef>
+			<beddingDef>CYB_MultiTribalBedding</beddingDef>
+		  </li>
+		</comps>
+		<statBases>
+		  <MaxHitPoints>180</MaxHitPoints>
+		  <Flammability>3.0</Flammability>
+		  <WorkToBuild>850</WorkToBuild>
+		  <Mass>40</Mass>
+		  <BedRestEffectiveness>0.50</BedRestEffectiveness>
+		  <Comfort>0.20</Comfort>
+		  <ImmunityGainSpeedFactor>1.03</ImmunityGainSpeedFactor>
+		  <SurgerySuccessChanceFactor>0.85</SurgerySuccessChanceFactor>
+		  <BedStuffEffectMultiplierInsulation_Cold>0.2</BedStuffEffectMultiplierInsulation_Cold>
+		  <BirthRitualQualityOffset MayRequire="Ludeon.RimWorld.Biotech">1</BirthRitualQualityOffset>
+		</statBases>
+		<size>(3,2)</size>
+		<costList>
+		  <WoodLog>3</WoodLog>
+		  <Hay>100</Hay>
+		</costList>
+		<building>
+		  <bed_showSleeperBody>false</bed_showSleeperBody>
+		  <bed_healPerDay>3</bed_healPerDay>
+		  <fixedStorageSettings>
+			<filter>
+			  <categories>
+				<li>Textiles</li>
+			  </categories>
+			</filter>
+		  </fixedStorageSettings>
+		  <defaultStorageSettings>
+			<filter>
+			  <categories>
+				<li>Textiles</li>
+			  </categories>
+			</filter>
+		  </defaultStorageSettings>
+		</building>
+		<fillPercent>0.35</fillPercent>
+		<pathCost>35</pathCost>
+		<staticSunShadowHeight>0.17</staticSunShadowHeight>
+		<castEdgeShadows>True</castEdgeShadows>
+		<designationHotKey>Misc2</designationHotKey>
+		<techLevel>Neolithic</techLevel>
+		<leaveResourcesWhenKilled>True</leaveResourcesWhenKilled>
+		<researchPrerequisites>
+		  <li>VBY_PrimitiveProduction</li>
+		</researchPrerequisites>
+		<uiIconPath>Things/Building/Furniture/Bed/HDM_BedHay3_south</uiIconPath>
+		<uiIconScale>1.1</uiIconScale>
+		<inspectorTabs>
+		  <li MayRequire="Mlie.JPTSoftWarmBeds">SoftWarmBeds.ITab_Bedding</li>
+		</inspectorTabs>
+	  </ThingDef>
+
+	</value>
+</Operation>
+
+</Patch>

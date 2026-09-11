@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<LanguageData>
+
+  <!--
+    VBY_TripleHayBed carries a VBY_ prefix but it is this mod that declares it: Patches/
+    triplebeds.xml removes whatever copy Primitive Workbenches left behind and adds this one in
+    its place. Translating it here is therefore translating our own def, not injecting into
+    somebody else's - the same reason the hay bed, the double hay bed and the hay crib are NOT
+    translated in this folder. Their labels belong to Primitive Workbenches, which has no French
+    of its own; giving them a French description under an English label would read worse than
+    leaving both in English.
+
+    All three defs here are gated by MayRequireAnyOf and will often not exist. RimWorld does not
+    complain about a translation key with no def unless translation debugging is turned on.
+  -->
+
+  <!-- EN: 3-person hay bed -->
+  <VBY_TripleHayBed.label>lit de paille pour trois</VBY_TripleHayBed.label>
+  <!-- EN: A bed made from hay. It's soft...ish and kinda pokey. Big enough for three. -->
+  <VBY_TripleHayBed.description>Un lit fait de paille. C'est... à peu près moelleux, et ça pique un peu. Assez grand pour trois.</VBY_TripleHayBed.description>
+
+  <!-- EN: simple multi bedding set -->
+  <CYB_MultiTribalBedding.label>literie simple pour trois</CYB_MultiTribalBedding.label>
+  <!-- EN: Layered blankets to cover a hay bed, making it warmer and more comfortable. -->
+  <CYB_MultiTribalBedding.description>Des couvertures superposées pour garnir un lit de paille, qui le rendent plus chaud et plus confortable.</CYB_MultiTribalBedding.description>
+
+  <!-- EN: hay bed blanket -->
+  <CYB_BedHay3Blanket.label>couverture de lit de paille pour trois</CYB_BedHay3Blanket.label>
+  <!-- EN: Keeps you and your friends warm -->
+  <CYB_BedHay3Blanket.description>Vous tient chaud, vous et les vôtres.</CYB_BedHay3Blanket.description>
+
+</LanguageData>

@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+<!--
+  The hay bed, the double hay bed and the hay crib, made into Soft Warm Beds frames: most of the
+  base rest and comfort taken out of the bed and given back by a bedding the colony crafts and
+  hauls, haycloth taken out of the cost, a bedding tab, a textile storage filter, and the
+  frame-only textures Phaneron drew so that a blanket can be drawn over them.
+
+  The 3-person hay bed is NOT handled here, although the original listed it in every one of the
+  shared xpaths below. It is handled entirely in triplebeds.xml, and for one reason: whether it
+  exists at all depends on the rest of the modlist, and if it is created there while the shared
+  operations here also aim at it, the result depends on which of these two files RimWorld happens
+  to read first. File order inside a mod's Patches folder is whatever DirectoryInfo.GetFiles
+  returns, filled in by a pool of threads - it is not part of the API and nothing promises it.
+  One file owning that bed outright is worth more than the four lines it saves.
+-->
+
+<!-- hay bed -->
+<Operation Class="PatchOperationReplace">
+	<xpath>Defs/ThingDef[defName="VBY_Haybed"]/description</xpath>
+	<value>
+		<description>A bed made from hay. It's soft...ish and kinda pokey.</description>
+	</value>
+</Operation>
+<Operation Class="PatchOperationRemove">
+	<xpath>Defs/ThingDef[defName="VBY_Haybed"]/costList/VBY_Haycloth</xpath>
+</Operation>
+<Operation Class="PatchOperationReplace">
+	<xpath>Defs/ThingDef[defName="VBY_Haybed"]/costList/Hay</xpath>
+	<value>
+		<Hay>50</Hay>
+	</value>
+</Operation>
+<Operation Class="PatchOperationAdd">
+	<xpath>Defs/ThingDef[defName="VBY_Haybed"]/comps</xpath>
+	<value>
+	  <li Class="SoftWarmBeds.CompProperties_MakeableBed" MayRequire="Mlie.JPTSoftWarmBeds">
+		<blanketDef>CYB_HayBedBlanket</blanketDef>
+		<beddingDef>CYB_SingleTribalBedding</beddingDef>
+	  </li>
+	</value>
+</Operation>
+<Operation Class="PatchOperationAdd">
+	<xpath>Defs/ThingDef[defName="VBY_Haybed"]</xpath>
+	<value>
+          <uiIconPath>Things/Building/Furniture/Bed/HDM_BedHay_south</uiIconPath>
+	</value>
+</Operation>
+<Operation Class="PatchOperationAdd">
+	<xpath>Defs/ThingDef[defName="VBY_Haybed"]</xpath>
+	<value>
+          <uiIconColor>(255,255,255)</uiIconColor>
+	</value>
+</Operation>
+<Operation Class="PatchOperationReplace">
+<xpath>Defs/ThingDef[defName="VBY_Haybed"]/graphicData/drawSize</xpath>
+	<value>
+		<drawSize>(2,2)</drawSize>
+	</value>
+</Operation>
+
+<!-- double hay bed -->
+<Operation Class="PatchOperationReplace">
+	<xpath>Defs/ThingDef[defName="VBY_DoubleHaybed"]/description</xpath>
+	<value>
+		<description>A bed made from hay. It's soft...ish and kinda pokey. Big enough for two.</description>
+	</value>
+</Operation>
+<Operation Class="PatchOperationRemove">
+	<xpath>Defs/ThingDef[defName="VBY_DoubleHaybed"]/costList/VBY_Haycloth</xpath>
+</Operation>
+<Operation Class="PatchOperationReplace">
+	<xpath>Defs/ThingDef[defName="VBY_DoubleHaybed"]/costList/Hay</xpath>
+	<value>
+		<Hay>80</Hay>
+	</value>
+</Operation>
+<Operation Class="PatchOperationAdd">
+	<xpath>Defs/ThingDef[defName="VBY_DoubleHaybed"]/comps</xpath>
+	<value>
+	  <li Class="SoftWarmBeds.CompProperties_MakeableBed" MayRequire="Mlie.JPTSoftWarmBeds">
+		<blanketDef>CYB_DoubleHayBedBlanket</blanketDef>
+		<beddingDef>CYB_DoubleTribalBedding</beddingDef>
+	  </li>
+	</value>
+</Operation>
+<Operation Class="PatchOperationAdd">
+	<xpath>Defs/ThingDef[defName="VBY_DoubleHaybed"]</xpath>
+	<value>
+          <uiIconPath>Things/Building/Furniture/Bed/HDM_DoubleHay_south</uiIconPath>
+	</value>
+</Operation>
+<Operation Class="PatchOperationAdd">
+	<xpath>Defs/ThingDef[defName="VBY_DoubleHaybed"]</xpath>
+	<value>
+          <uiIconColor>(255,255,255)</uiIconColor>
+	</value>
+</Operation>
+
+<!--
+  hay crib - wrapped, where the original was not.
+
+  Primitive Workbenches declares VBY_HayCrib and then deletes it again unless Biotech or
+  Children, school and learning is loaded. On a colony with neither, every one of the operations
+  below aims at a def that is no longer in the document, and a PatchOperationReplace that matches
+  nothing does not fail quietly: it returns false and the loader writes a red line for it. Eight
+  of them, every startup. The conditional makes the whole block a no-op instead, which is what it
+  always meant.
+-->
+<Operation Class="PatchOperationConditional">
+	<xpath>Defs/ThingDef[defName="VBY_HayCrib"]</xpath>
+	<match Class="PatchOperationSequence">
+		<operations>
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="VBY_HayCrib"]/description</xpath>
+				<value>
+					<description>A crib made from hay. It's soft...ish and kinda pokey. The perfect size for a wee pawn.</description>
+				</value>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="VBY_HayCrib"]/costList</xpath>
+				<value>
+					<costList>
+					  <WoodLog>3</WoodLog>
+					  <Hay>50</Hay>
+					</costList>
+				</value>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="VBY_HayCrib"]/comps</xpath>
+				<value>
+				  <li Class="SoftWarmBeds.CompProperties_MakeableBed" MayRequire="Mlie.JPTSoftWarmBeds">
+					<blanketDef>CYB_HayCribBlanket</blanketDef>
+					<beddingDef>CYB_CribTribalBedding</beddingDef>
+				  </li>
+				</value>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="VBY_HayCrib"]</xpath>
+				<value>
+					<uiIconPath>Things/Building/Furniture/Bed/VBY_HayCribAlt_south</uiIconPath>
+					<tickerType>Normal</tickerType>
+					<uiIconColor>(255,255,255)</uiIconColor>
+				</value>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="VBY_HayCrib"]/graphicData/drawSize</xpath>
+				<value>
+					<drawSize>(1.5,1.5)</drawSize>
+				</value>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="VBY_HayCrib"]/uiIconScale</xpath>
+				<value>
+					<uiIconScale>1</uiIconScale>
+				</value>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="VBY_HayCrib"]/size/text()</xpath>
+				<value>(1,1)</value>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="VBY_HayCrib"]</xpath>
+				<value>
+					<thingClass>Building_Bed</thingClass>
+					<altitudeLayer>Building</altitudeLayer>
+					<uiOrder>2020</uiOrder>
+					<drawerType>MapMeshAndRealTime</drawerType>
+				</value>
+			</li>
+		</operations>
+	</match>
+</Operation>
+
+
+<!-- sleep stats -->
+<Operation Class="PatchOperationReplace">
+	<xpath>Defs/ThingDef[
+	defName="VBY_Haybed" or
+	defName="VBY_DoubleHaybed" or
+	defName="VBY_HayCrib"
+	]/statBases/BedRestEffectiveness</xpath>
+	<value>
+		<BedRestEffectiveness>0.45</BedRestEffectiveness>
+	</value>
+</Operation>
+<Operation Class="PatchOperationReplace">
+	<xpath>Defs/ThingDef[
+	defName="VBY_Haybed" or
+	defName="VBY_DoubleHaybed" or
+	defName="VBY_HayCrib"
+	]/statBases/Comfort</xpath>
+	<value>
+		<Comfort>0.2</Comfort>
+	</value>
+</Operation>
+<Operation Class="PatchOperationAdd">
+	<xpath>Defs/ThingDef[
+	defName="VBY_Haybed" or
+	defName="VBY_DoubleHaybed" or
+	defName="VBY_HayCrib"
+	]/statBases</xpath>
+	<value>
+		<BedStuffEffectMultiplierInsulation_Cold>0.3</BedStuffEffectMultiplierInsulation_Cold>
+	</value>
+</Operation>
+<Operation Class="PatchOperationAdd">
+	<xpath>Defs/ThingDef[
+	defName="VBY_Haybed" or
+	defName="VBY_DoubleHaybed"
+	]/statBases</xpath>
+	<value>
+		<BirthRitualQualityOffset MayRequire="Ludeon.RimWorld.Biotech">1</BirthRitualQualityOffset>
+	</value>
+</Operation>
+
+
+<!-- under the hood -->
+<Operation Class="PatchOperationReplace">
+	<xpath>Defs/ThingDef[
+	defName="VBY_Haybed" or
+	defName="VBY_DoubleHaybed" or
+	defName="VBY_HayCrib"
+	]/building/bed_showSleeperBody</xpath>
+	<value>
+		<bed_showSleeperBody>false</bed_showSleeperBody>
+	</value>
+</Operation>
+<Operation Class="PatchOperationAdd">
+	<xpath>Defs/ThingDef[
+	defName="VBY_Haybed" or
+	defName="VBY_DoubleHaybed" or
+	defName="VBY_HayCrib"
+	]</xpath>
+	<value>
+		<inspectorTabs>
+			<li MayRequire="Mlie.JPTSoftWarmBeds">SoftWarmBeds.ITab_Bedding</li>
+		</inspectorTabs>
+	</value>
+</Operation>
+<Operation Class="PatchOperationAdd">
+	<xpath>Defs/ThingDef[
+	defName="VBY_Haybed" or
+	defName="VBY_DoubleHaybed" or
+	defName="VBY_HayCrib"
+	]/building</xpath>
+	<value>
+	  <fixedStorageSettings>
+		<filter>
+		  <categories>
+			<li>Textiles</li>
+		  </categories>
+		</filter>
+	  </fixedStorageSettings>
+	  <defaultStorageSettings>
+		<filter>
+		  <categories>
+			<li>Textiles</li>
+		  </categories>
+		</filter>
+	  </defaultStorageSettings>
+	</value>
+</Operation>
+
+</Patch>

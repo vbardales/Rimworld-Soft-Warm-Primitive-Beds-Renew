@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+<!--
+  The leather beds go. That is the whole idea of this mod: their look comes back as a bedding
+  you lay on a hay bed, so a colony builds one bed and dresses it instead of building two.
+
+  VBY_TripleLeatherBed is new to this list. The original removed the single and the double and
+  left the 3-person leather bed standing, so a colony that had lost leather beds could still
+  build one of them - out of leather, with no bedding tab and no blanket, next to a hay bed that
+  had both. It is on the same footing as its two siblings and it goes with them.
+
+  Primitive Workbenches deletes its own 3-person beds unless Psychology or Rational Romance 2 is
+  loaded, so this xpath will often find only two of the three. It is one union rather than three
+  operations for exactly that reason: a PatchOperationRemove that matches nothing writes a red
+  line, and the single and the double are always there to match.
+-->
+
+<Operation Class="PatchOperationRemove">
+	<xpath>Defs/ThingDef[
+	defName="VBY_Leatherbed" or
+	defName="VBY_DoubleLeatherbed" or
+	defName="VBY_TripleLeatherBed"
+	]</xpath>
+</Operation>
+
+</Patch>

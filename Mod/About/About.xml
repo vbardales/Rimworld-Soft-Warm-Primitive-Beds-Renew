@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ModMetaData>
+	<packageId>nelim.softwarmprimitivebedsrenew</packageId>
+	<name>Soft Warm Primitive Beds Renew</name>
+	<author>cyanobot, graphics by Phaneron - 1.6 port: nelim</author>
+	<supportedVersions>
+		<li>1.6</li>
+	</supportedVersions>
+	<url>https://github.com/vbardales/Rimworld-Soft-Warm-Primitive-Beds-Renew</url>
+	<modDependencies>
+		<li>
+			<packageId>Mlie.JPTSoftWarmBeds</packageId>
+			<displayName>[JPT] Soft Warm Beds (Continued)</displayName>
+			<steamWorkshopUrl>https://steamcommunity.com/sharedfiles/filedetails/?id=3006469889</steamWorkshopUrl>
+			<downloadUrl>https://github.com/emipa606/JPTSoftWarmBeds</downloadUrl>
+		</li>
+		<li>
+			<packageId>zal.primitiveproduction</packageId>
+			<displayName>Primitive Workbenches (Continued)</displayName>
+			<steamWorkshopUrl>https://steamcommunity.com/sharedfiles/filedetails/?id=3751287735</steamWorkshopUrl>
+		</li>
+	</modDependencies>
+	<incompatibleWith>
+		<li>cyanobot.softwarmprimitivebeds</li>
+	</incompatibleWith>
+	<loadAfter>
+		<li>Ludeon.RimWorld</li>
+		<li>Ludeon.RimWorld.Royalty</li>
+		<li>Ludeon.RimWorld.Ideology</li>
+		<li>Ludeon.RimWorld.Biotech</li>
+		<li>Mlie.JPTSoftWarmBeds</li>
+		<li>zal.primitiveproduction</li>
+		<li>PrimitiveProduction.velcroboy333</li>
+		<li>Phaneron.PrimitiveWorkbenchesRetexture</li>
+		<li>Meltup.PolyamoryBeds.Vanilla</li>
+	</loadAfter>
+	<description>Soft Warm Beds compat for Primitive Workbenches, using graphics by Phaneron. Merges the hay and leather beds so that the leather bed textures can be used for the bedding on the hay bed.
+
+I am not the author of this mod. The defs, the balance and the artwork are cyanobot's and Phaneron's - all I did was bring it forward to 1.6, repoint it at the version of Primitive Workbenches that is still alive, and fix what that turned up. Credit goes to them; mistakes in the port are mine.
+
+Original mod: https://steamcommunity.com/sharedfiles/filedetails/?id=3449202390 - declares 1.5 and nothing further.
+
+WHAT THE MOD DOES
+
+Primitive Workbenches gives a neolithic colony a hay bed, a double hay bed, a hay crib and a leather bed. Soft Warm Beds splits every bed into a frame plus a bedding you craft, haul and put on it. This mod joins the two: the leather beds are removed and their look comes back as bedding you lay on a hay bed, so a tribal colony builds one bed and dresses it rather than building two.
+
+- The hay bed, the double hay bed and the hay crib lose most of their base rest and comfort, and get it back from the bedding: simple bedding, large simple bedding, or a crib bedding set, made at a tailoring bench or a crafting spot out of any leather or cloth.
+- Each of them gains the Soft Warm Beds bedding tab, a textile storage filter, and a blanket drawn over the sleeper.
+- The leather bed and the double leather bed are removed. So is the 3-person leather bed, which the original left behind.
+- With Polyamory Beds, Psychology or Rational Romance 2, a 3-person hay bed and its multi bedding set.
+- Haycloth is dropped from the bed costs; they are paid for in hay and wood.
+
+WHAT CHANGED IN THE 1.6 PORT
+
+The mod declared a dependency on Primitive Workbenches by the packageId of the original, which stopped at 1.5. That mod was taken over as Primitive Workbenches (Continued), under a new packageId, so the dependency pointed at nothing. It now points at the continuation. Every defName the patches target is still there, and every xpath still finds what it is aimed at.
+
+The 3-person hay bed was declared twice. The original reinstated it with a comment saying Primitive Workbenches did not recognise Polyamory Beds - and that is still true, because the continuation deletes its own 3-person beds unless Psychology or Rational Romance 2 is loaded, and its check does not know about Polyamory Beds. But when one of those two IS loaded, the bed survived and this mod declared it a second time under the same defName: the later of the two silently won and the game logged an error. It is now removed first and declared once, so there is exactly one 3-person hay bed however the rest of your modlist is arranged.
+
+The 3-person leather bed is now removed with the other two. The original removed the single and double leather beds and left the 3-person one standing, so a colony that had removed leather beds could still build one of them.
+
+The hay crib patches no longer fire when there is no hay crib. Primitive Workbenches deletes its crib unless Biotech or Children, school and learning is loaded; without either, eight patch operations aimed at a def that is no longer there each logged a red error at startup.
+
+One dead facility reference is gone. The 3-person bed offered to link to Table_LightEndTable, a def Vanilla Furniture Expanded dropped in 1.6 - Primitive Workbenches commented the same line out of its own beds. MayRequire does not protect against that: it checks that the mod is loaded, not that the def exists.
+
+French was added. Nothing else moved: the stats, the costs, the recipes, the textures and the defNames are as cyanobot wrote them.
+
+CREDIT AND REMOVAL
+
+cyanobot declared no licence: no file in the mod, nothing in its About.xml, no linked repository, and nothing in the body of the description on its Steam page. It is republished here under the usual convention for abandoned mods - full credit, a link to the original, and removal on request. If cyanobot would rather this port did not exist, say so and it comes down: no argument, no delay. The same goes for Phaneron, whose graphics this mod carries.
+
+The original defNames are kept, so a save moves between the two mods without losing a bed. The two cannot run together: the original is declared incompatible above. Run one or the other.
+
+Source, changelog and attribution: https://github.com/vbardales/Rimworld-Soft-Warm-Primitive-Beds-Renew
+
+The port work was done with the help of an AI assistant (Claude, by Anthropic), under human direction and in-game testing. Thanks to cyanobot for the mod and to Phaneron for the graphics.
+
+If I do not answer within a reasonable time after being contacted, anyone may freely update this or any other of my mods, including publishing a continuation of it. All credit must be preserved.</description>
+</ModMetaData>

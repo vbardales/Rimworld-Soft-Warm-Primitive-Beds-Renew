@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <ThingDef ParentName="BlanketBase">
+    <defName>CYB_HayBedBlanket</defName>
+    <label>hay bed blanket</label>
+    <description>Keeps you warm</description>
+    <graphicData>
+      <texPath>Things/Building/Furniture/Bed/CYB_HayBedBlanket</texPath>
+      <graphicClass>Graphic_Multi</graphicClass>
+      <!--<shaderType>CutoutComplex</shaderType>-->
+      <drawSize>(1.95,1.85)</drawSize>
+	  <drawOffsetEast>(0.1,0,0.03)</drawOffsetEast>
+	  <drawOffsetWest>(-0.1,0,0.03)</drawOffsetWest>
+	  <drawOffsetSouth>(0,0,-0.08)</drawOffsetSouth>
+	  <drawOffsetNorth>(0,0,0.1)</drawOffsetNorth>
+      <damageData>
+        <rect>(0,0.05,1,1.95)</rect>
+      </damageData>
+    </graphicData>
+    <size>(1,2)</size>
+  </ThingDef>
+  
+  <ThingDef ParentName="BlanketBase">
+    <defName>CYB_DoubleHayBedBlanket</defName>
+    <label>hay bed blanket</label>
+    <description>Keeps you warm</description>
+    <graphicData>
+      <texPath>Things/Building/Furniture/Bed/CYB_DoubleHayBedBlanket</texPath>
+      <graphicClass>Graphic_Multi</graphicClass>
+      <!--<shaderType>CutoutComplex</shaderType>-->
+      <drawSize>(2.3,2.05)</drawSize>
+	  <drawOffsetEast>(0.1,0,0.03)</drawOffsetEast>
+	  <drawOffsetWest>(-0.1,0,0.03)</drawOffsetWest>
+	  <drawOffsetSouth>(0,0,-0.05)</drawOffsetSouth>
+	  <drawOffsetNorth>(0,0,0.1)</drawOffsetNorth>
+      <damageData>
+        <rect>(0,0.05,1,1.95)</rect>
+      </damageData>
+    </graphicData>
+    <size>(2,2)</size>
+  </ThingDef>
+    
+  <ThingDef ParentName="BlanketBase">
+    <defName>CYB_HayCribBlanket</defName>
+    <label>hay crib blanket</label>
+    <description>Keeps your baby warm</description>
+    <graphicData>
+      <texPath>Things/Building/Furniture/Bed/CYB_HayCribBlanket</texPath>
+      <graphicClass>Graphic_Multi</graphicClass>
+	  <!--
+      <drawOffsetEast>(0.05,0,0)</drawOffsetEast>
+      <drawOffsetSouth>(0,0,-0.05)</drawOffsetSouth>
+      <drawOffsetNorth>(0,0,0.05)</drawOffsetNorth>
+	  -->
+      <drawSize>(1.5,1.5)</drawSize>
+      <damageData>
+        <rect>(0,0.05,1,1)</rect>
+      </damageData>
+    </graphicData>
+    <size>(1,1)</size>
+  </ThingDef>
+  
+ </Defs>
