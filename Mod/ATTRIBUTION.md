@@ -23,7 +23,7 @@ anywhere**, checked at the four places one could be, plus a fifth this mod happe
 
 This is the usual convention for ports on the RimWorld Workshop: republished with **credit by
 name** and **removal on request, without argument**. The `<author>` field reads
-`cyanobot, graphics by Phaneron - 1.6 port: nelim`, and the removal clause is in the description.
+`cyanobot, graphics by Phaneron - 1.6 adapted by Nelim`, and the removal clause is in the description.
 
 ### Phaneron's graphics, and the word "permission"
 
